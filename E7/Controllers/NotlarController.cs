@@ -8,9 +8,11 @@ namespace E7.Controllers
 {
     public class NotlarController : Controller
     {
-
+       
         public ActionResult NotlarView()
         {
+            var a = Session["ActiveUser"].ToString();
+            int i = int.Parse(a);
             using (USIS1Entities db = new USIS1Entities())
             {
                 {
@@ -27,6 +29,7 @@ namespace E7.Controllers
                                from c in table2.ToList()
                                join eg in examgrade on sc.StudentCourseID equals eg.StudentCourseID into table3
                                from eg in table3.ToList()
+                               where s.StudenID==i
 
                                select new Notlar
                                {

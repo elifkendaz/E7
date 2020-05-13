@@ -30,6 +30,7 @@ namespace E7.Controllers
                 
                 FormsAuthentication.SetAuthCookie(kullaniciInDb.StudentNo.ToString(), true);
                 @TempData["Veri"] = kullaniciInDb;
+                Session.Add("ActiveUser", kullaniciInDb.StudentNo);
                 return RedirectToAction("Anasayfa", "Home");
                 
             }

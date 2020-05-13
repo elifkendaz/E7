@@ -14,6 +14,8 @@ namespace E7.Controllers
         // GET: OgrenciDersler
         public ActionResult OgrenciDersView()
         {
+            var a= Session["ActiveUser"].ToString();
+            int i = int.Parse(a);
             using (USIS1Entities db = new USIS1Entities())
             {
                 {
@@ -29,6 +31,7 @@ namespace E7.Controllers
                                from sc in table2.ToList()
                                join c in courselist on sc.CourseID equals c.CourseID into table3
                                from c in table3.ToList()
+                               where s.StudenID==i
 
                                select new OgrenciDers
                                {

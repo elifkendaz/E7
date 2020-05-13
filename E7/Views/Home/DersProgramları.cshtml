@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "DersProgramları";
+    Layout = "~/Views/Shared/layout1.cshtml";
+    var a = Session["ActiveUser"].ToString();
+    int i = int.Parse(a);
+
+}
+
+<h2>DersProgramları</h2>
+
+@if (i == 1)
+{
+    <img src="~/web/USIS SISTEMI-1.png" alt="Example" width="200" height="400" />
+
+}
+
+@if (i == 2)
+{
+    <img src="~/web/USIS SISTEMI-1.png" alt="Example" width="200" height="400" />
+
+}
+
+@if (i == 3)
+{
+    <img src="~/web/USIS SISTEMI-1.png" alt="Example" width="200" height="400" />
+
+}
+
+
+
+

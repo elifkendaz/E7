@@ -37,6 +37,8 @@ namespace E7.Controllers
         }
         public ActionResult Anasayfa()
         {
+
+            ViewBag.UserName = Session["ActiveUser"].ToString();
             return View();
         }
         public ActionResult Ogrenci()
@@ -45,10 +47,12 @@ namespace E7.Controllers
 
             var degerler = db.Students.ToList();
             return View(degerler);
-           
-      
+          
         }
-       
+        public ActionResult DersProgramları()
+        {
+            return View();
+        }
 
     }
 }

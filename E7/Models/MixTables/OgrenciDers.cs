@@ -11,7 +11,7 @@ namespace E7.Models.MixTables
         public KullaniciGiris kullanici { get; set; }
 
         public Students student1 { get; set; }
-            public StudentCourses studentcourse { get; set; }
+        public StudentCourses studentcourse { get; set; }
            
         public Courses course { get; set; }
         

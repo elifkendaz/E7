@@ -15,6 +15,8 @@ namespace E7.Controllers
         // GET: OgrenciDersler
         public ActionResult DersView()
         {
+            var a = Session["ActiveUser"].ToString();
+            int i = int.Parse(a);
             using (USIS1Entities db = new USIS1Entities())
             {
                 {

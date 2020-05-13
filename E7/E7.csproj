@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DerslerController.cs" />
+    <Compile Include="Controllers\DersProgramiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NotlarController.cs" />
     <Compile Include="Controllers\OgrenciDerslerController.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\MixTables\dersp.cs" />
     <Compile Include="Models\MixTables\ders.cs" />
     <Compile Include="Models\MixTables\Notlar.cs" />
     <Compile Include="Models\MixTables\OgrenciDers.cs" />
@@ -199,6 +201,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="web\us.jpg" />
+    <Content Include="web\USIS SISTEMI-1.png" />
     <EntityDeploy Include="Models\EntityFramework\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -237,6 +240,8 @@
     <Content Include="Views\OgrenciDersler\OgrenciDersView.cshtml" />
     <Content Include="Views\Dersler\DersView.cshtml" />
     <Content Include="Views\Notlar\NotlarView.cshtml" />
+    <Content Include="Views\Home\DersProgramları.cshtml" />
+    <Content Include="Views\DersProgrami\DersPView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

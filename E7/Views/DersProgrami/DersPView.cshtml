@@ -1,0 +1,20 @@
+﻿@model IEnumerable<E7.Models.MixTables.dersp>
+@{
+    ViewBag.Title = "DersPView";
+    Layout = "~/Views/Shared/layout1.cshtml";
+}
+
+<h2>DersPView</h2>
+
+@foreach (var ktgr in Model)
+{
+
+    @ktgr.student.StudenID
+    @ktgr.student.StudentFullName
+
+    if (ktgr.department.DepartmentID == 1)
+    {
+        <img src="~/web/USIS SISTEMI-1.png" alt="Example" width="200" height="400" />
+    }
+
+}
