@@ -1,0 +1,25 @@
+﻿
+@model IEnumerable<E7.Models.MixTables.ders>
+@{
+    ViewBag.Title = "DersView";
+    Layout = "~/Views/Shared/layout1.cshtml";
+}
+
+<h2>DersView</h2>
+
+<table class="table">
+    <tr>
+        <td> 1</td>
+        <td> 2</td>
+        
+    </tr>
+    @foreach (var ktgr2 in Model)
+    {
+        <tr>
+            <td>@ktgr2.department.DepartmentName</td>
+            <td>@ktgr2.course.CourseName</td>
+            
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,35 @@
+﻿@model E7.Models.EntityFramework.KullaniciGiris
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <img src="~/web/us.jpg" alt="Example" width="1400" height="150" />
+    <div class="container">
+        @ViewBag.Mesaj
+        @using (Html.BeginForm("Login", "Security", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.StudentNo)
+                @Html.TextBoxFor(m => m.StudentNo, new { @class = "form-control", placeholder = "Öğrenci No" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Parola" })
+            </div>
+
+            <button type="submit" class="btn btn-block btn-success">Login</button>
+        }
+
+    </div>
+</body>
+</html>

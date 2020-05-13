@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="USIS1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="CourseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="CourseCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CourseName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ExamGrades">
+          <Key>
+            <PropertyRef Name="ExamID" />
+          </Key>
+          <Property Name="ExamID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentCourseID" Type="int" />
+          <Property Name="Grade" Type="int" />
+        </EntityType>
+        <EntityType Name="KullaniciGiris">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentNo" Type="int" />
+          <Property Name="Password" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="StudentCourses">
+          <Key>
+            <PropertyRef Name="StudentCourseID" />
+          </Key>
+          <Property Name="StudentCourseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="CourseID" Type="int" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="StudenID" />
+          </Key>
+          <Property Name="StudenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="StudentFullName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Courses_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+          <End Role="Courses" Type="Self.Courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="Courses">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExamGrades_StudentCourses">
+          <End Role="StudentCourses" Type="Self.StudentCourses" Multiplicity="0..1" />
+          <End Role="ExamGrades" Type="Self.ExamGrades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentCourses">
+              <PropertyRef Name="StudentCourseID" />
+            </Principal>
+            <Dependent Role="ExamGrades">
+              <PropertyRef Name="StudentCourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KullaniciGiris_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="KullaniciGiris" Type="Self.KullaniciGiris" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudenID" />
+            </Principal>
+            <Dependent Role="KullaniciGiris">
+              <PropertyRef Name="StudentNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentCourses_Courses">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+          <End Role="StudentCourses" Type="Self.StudentCourses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="StudentCourses">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentCourses_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="StudentCourses" Type="Self.StudentCourses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudenID" />
+            </Principal>
+            <Dependent Role="StudentCourses">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="USIS1ModelStoreContainer">
+          <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExamGrades" EntityType="Self.ExamGrades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KullaniciGiris" EntityType="Self.KullaniciGiris" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentCourses" EntityType="Self.StudentCourses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Courses_Departments" Association="Self.FK_Courses_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Courses" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExamGrades_StudentCourses" Association="Self.FK_ExamGrades_StudentCourses">
+            <End Role="StudentCourses" EntitySet="StudentCourses" />
+            <End Role="ExamGrades" EntitySet="ExamGrades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KullaniciGiris_Students" Association="Self.FK_KullaniciGiris_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="KullaniciGiris" EntitySet="KullaniciGiris" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentCourses_Courses" Association="Self.FK_StudentCourses_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="StudentCourses" EntitySet="StudentCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentCourses_Students" Association="Self.FK_StudentCourses_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="StudentCourses" EntitySet="StudentCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Departments" Association="Self.FK_Students_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="USIS1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="CourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="CourseCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK_Courses_Departments" FromRole="Courses" ToRole="Departments" />
+          <NavigationProperty Name="StudentCourses" Relationship="Self.FK_StudentCourses_Courses" FromRole="Courses" ToRole="StudentCourses" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Courses" Relationship="Self.FK_Courses_Departments" FromRole="Departments" ToRole="Courses" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_Students_Departments" FromRole="Departments" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="ExamGrades">
+          <Key>
+            <PropertyRef Name="ExamID" />
+          </Key>
+          <Property Name="ExamID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentCourseID" Type="Int32" />
+          <Property Name="Grade" Type="Int32" />
+          <NavigationProperty Name="StudentCourses" Relationship="Self.FK_ExamGrades_StudentCourses" FromRole="ExamGrades" ToRole="StudentCourses" />
+        </EntityType>
+        <EntityType Name="KullaniciGiris">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentNo" Type="Int32" />
+          <Property Name="Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_KullaniciGiris_Students" FromRole="KullaniciGiris" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="StudentCourses">
+          <Key>
+            <PropertyRef Name="StudentCourseID" />
+          </Key>
+          <Property Name="StudentCourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="CourseID" Type="Int32" />
+          <NavigationProperty Name="Courses" Relationship="Self.FK_StudentCourses_Courses" FromRole="StudentCourses" ToRole="Courses" />
+          <NavigationProperty Name="ExamGrades" Relationship="Self.FK_ExamGrades_StudentCourses" FromRole="StudentCourses" ToRole="ExamGrades" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_StudentCourses_Students" FromRole="StudentCourses" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="StudenID" />
+          </Key>
+          <Property Name="StudenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="StudentFullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK_Students_Departments" FromRole="Students" ToRole="Departments" />
+          <NavigationProperty Name="KullaniciGiris" Relationship="Self.FK_KullaniciGiris_Students" FromRole="Students" ToRole="KullaniciGiris" />
+          <NavigationProperty Name="StudentCourses" Relationship="Self.FK_StudentCourses_Students" FromRole="Students" ToRole="StudentCourses" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Courses_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+          <End Role="Courses" Type="Self.Courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="Courses">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentCourses_Courses">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+          <End Role="StudentCourses" Type="Self.StudentCourses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="StudentCourses">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExamGrades_StudentCourses">
+          <End Role="StudentCourses" Type="Self.StudentCourses" Multiplicity="0..1" />
+          <End Role="ExamGrades" Type="Self.ExamGrades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentCourses">
+              <PropertyRef Name="StudentCourseID" />
+            </Principal>
+            <Dependent Role="ExamGrades">
+              <PropertyRef Name="StudentCourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KullaniciGiris_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="KullaniciGiris" Type="Self.KullaniciGiris" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudenID" />
+            </Principal>
+            <Dependent Role="KullaniciGiris">
+              <PropertyRef Name="StudentNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentCourses_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="StudentCourses" Type="Self.StudentCourses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudenID" />
+            </Principal>
+            <Dependent Role="StudentCourses">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="USIS1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Courses" EntityType="Self.Courses" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" />
+          <EntitySet Name="ExamGrades" EntityType="Self.ExamGrades" />
+          <EntitySet Name="KullaniciGiris" EntityType="Self.KullaniciGiris" />
+          <EntitySet Name="StudentCourses" EntityType="Self.StudentCourses" />
+          <EntitySet Name="Students" EntityType="Self.Students" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Courses_Departments" Association="Self.FK_Courses_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Courses" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentCourses_Courses" Association="Self.FK_StudentCourses_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="StudentCourses" EntitySet="StudentCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Departments" Association="Self.FK_Students_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExamGrades_StudentCourses" Association="Self.FK_ExamGrades_StudentCourses">
+            <End Role="StudentCourses" EntitySet="StudentCourses" />
+            <End Role="ExamGrades" EntitySet="ExamGrades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KullaniciGiris_Students" Association="Self.FK_KullaniciGiris_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="KullaniciGiris" EntitySet="KullaniciGiris" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentCourses_Students" Association="Self.FK_StudentCourses_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="StudentCourses" EntitySet="StudentCourses" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="USIS1ModelStoreContainer" CdmEntityContainer="USIS1Entities">
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="USIS1Model.Courses">
+              <MappingFragment StoreEntitySet="Courses">
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="USIS1Model.Departments">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExamGrades">
+            <EntityTypeMapping TypeName="USIS1Model.ExamGrades">
+              <MappingFragment StoreEntitySet="ExamGrades">
+                <ScalarProperty Name="ExamID" ColumnName="ExamID" />
+                <ScalarProperty Name="StudentCourseID" ColumnName="StudentCourseID" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KullaniciGiris">
+            <EntityTypeMapping TypeName="USIS1Model.KullaniciGiris">
+              <MappingFragment StoreEntitySet="KullaniciGiris">
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="StudentNo" ColumnName="StudentNo" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentCourses">
+            <EntityTypeMapping TypeName="USIS1Model.StudentCourses">
+              <MappingFragment StoreEntitySet="StudentCourses">
+                <ScalarProperty Name="StudentCourseID" ColumnName="StudentCourseID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="USIS1Model.Students">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="StudenID" ColumnName="StudenID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="StudentFullName" ColumnName="StudentFullName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="USIS1Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

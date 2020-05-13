@@ -1,0 +1,92 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-widt, initial-scale=1" />
+    <style type="text/css">
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            background-color: #34495e;
+        }
+
+            ul li {
+                position: relative;
+            }
+
+        li a {
+            display: block;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid silver;
+        }
+
+            li a:hover {
+                background-color: #f39c12;
+                color: white;
+            }
+
+        li:hover ul {
+            display: block;
+        }
+
+        ul li ul {
+            position: absolute;
+            left: 200px;
+            top: 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <img src="~/web/us.jpg" alt="Example" width="1400" height="150" />
+        <ul>
+            <li><a href="">Ders Programları</a></li>
+
+
+            <li>
+                @Html.ActionLink("Ogrenci", "Ogrenci", "Home")
+
+            </li>
+
+            <li>
+                <a href="~/Dersler/DersView">Egitim Planı</a>
+
+            </li>
+            <li>
+                <a href="~/Notlar/NotlarView">Notlar</a>
+
+            </li>
+
+            <li>
+                <a href="~/OgrenciDersler/OgrenciDersView">Ogrenci Dersler</a>
+
+            </li>
+            @Html.ActionLink("OgrenciDersView", "OgrenciDersView", "OgrenciDerslerController")
+
+            <li><a href="/Security/Logout">Çıkış</a></li>
+
+        </ul>
+
+    </div>
+    <div class="content" style="margin-left:auto;
+      margin-right:auto;
+
+      width:70%;
+
+      background-color:#b0e0e6;">
+        @RenderBody()
+    </div>
+
+</body>
+</html>

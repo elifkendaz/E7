@@ -1,0 +1,32 @@
+﻿
+@model IEnumerable<E7.Models.MixTables.OgrenciDers>
+
+
+
+
+@{
+    ViewBag.Title = "OgrenciDersView";
+    Layout = "~/Views/Shared/layout1.cshtml";
+}
+
+<h2>OgrenciDersView</h2>
+
+<table class="table">
+    <tr>
+        <td> 1</td>
+        <td> 2</td>
+        <td> 3</td>
+        <td>4</td>
+        
+    </tr>
+    @foreach (var ktgr1 in Model)
+    {
+        <tr>
+            <td>@ktgr1.student1.StudenID</td>
+            <td>@ktgr1.student1.StudentFullName</td>
+           <td>@ktgr1.studentcourse.CourseID</td>
+            <td>@ktgr1.course.CourseName</td>
+        </tr>
+    }
+
+</table>

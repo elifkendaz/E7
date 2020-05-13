@@ -1,0 +1,35 @@
+﻿
+
+@model IEnumerable<E7.Models.MixTables.Notlar>
+
+
+@{
+    ViewBag.Title = "NotlarView";
+    Layout = "~/Views/Shared/layout1.cshtml";
+}
+
+<h2>NotlarView</h2>
+
+
+
+<table class="table">
+    <tr>
+        <td> 1</td>
+        <td> 2</td>
+        <td> 3</td>
+        <td>4</td>
+    </tr>
+    @foreach (var ktgr3 in Model)
+    {
+<tr>
+    <td>@ktgr3.student.StudenID</td>
+    <td>@ktgr3.student.StudentFullName</td>
+
+    <td>@ktgr3.course.CourseName</td>
+    <td>@ktgr3.examgrade.Grade</td>
+
+
+</tr>
+    }
+
+</table>
