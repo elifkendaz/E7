@@ -9,14 +9,14 @@
     Layout = "~/Views/Shared/layout1.cshtml";
 }
 
-<h2>OgrenciDersView</h2>
+<h2>Öğrencinin Aldığı Dersler</h2>
 
-<table class="table">
+<table class="table"  table border="1" cellpadding="10" border-collapse: collapse;>
     <tr>
-        <td> 1</td>
-        <td> 2</td>
-        <td> 3</td>
-        <td>4</td>
+        <th> Öğrenci Numarası</th>
+        <th> Öğrenci İsmi</th>
+        <th> Ders Kodu</th>
+        <th>Ders İsmi</th>
         
     </tr>
     @foreach (var ktgr1 in Model)

@@ -8,25 +8,25 @@
     Layout = "~/Views/Shared/layout1.cshtml";
 }
 
-<h2>NotlarView</h2>
+<h2>Sınav Notları</h2>
 
 
 
-<table class="table">
+<table class="table" table border="1" cellpadding="10" border-collapse: collapse;>
     <tr>
-        <td> 1</td>
-        <td> 2</td>
-        <td> 3</td>
-        <td>4</td>
+        <th> Öğrenci Numarası</th>
+        <th> Öğrenci İsmi</th>
+        <th> Ders İsmi</th>
+        <th>Sınav Notu</th>
     </tr>
     @foreach (var ktgr3 in Model)
     {
 <tr>
-    <td>@ktgr3.student.StudenID</td>
-    <td>@ktgr3.student.StudentFullName</td>
+    <td border: 1px solid black;>@ktgr3.student.StudenID</td>
+    <td border: 1px solid black;>@ktgr3.student.StudentFullName</td>
 
-    <td>@ktgr3.course.CourseName</td>
-    <td>@ktgr3.examgrade.Grade</td>
+    <td border: 1px solid black;>@ktgr3.course.CourseName</td>
+    <td border: 1px solid black;>@ktgr3.examgrade.Grade</td>
 
 
 </tr>

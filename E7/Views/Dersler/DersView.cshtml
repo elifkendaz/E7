@@ -5,19 +5,20 @@
     Layout = "~/Views/Shared/layout1.cshtml";
 }
 
-<h2>DersView</h2>
+<h2>Eğitim Planı</h2>
 
-<table class="table">
+<table table border="1" cellpadding="10" border-collapse: collapse;>
     <tr>
-        <td> 1</td>
-        <td> 2</td>
+        <th > Departman İsmi</th>
+        <th > Ders İsmi</th>
         
     </tr>
     @foreach (var ktgr2 in Model)
     {
         <tr>
-            <td>@ktgr2.department.DepartmentName</td>
-            <td>@ktgr2.course.CourseName</td>
+
+            <td border: 1px solid black;>@ktgr2.department.DepartmentName</td>
+            <td border: 1px solid black;>@ktgr2.course.CourseName</td>
             
         </tr>
     }

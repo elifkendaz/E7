@@ -51,11 +51,17 @@
     <div class="sidebar">
         <img src="~/web/us.jpg" alt="Example" width="1400" height="150" />
         <ul>
-            <li><a href="~/DersProgrami/DersPView">Ders Programları</a></li>
+            <li>
+                <a href="~/Home/Anasayfa">Anasayfa</a>
 
+            </li>
 
             <li>
-                @Html.ActionLink("Ogrenci", "Ogrenci", "Home")
+                <a href="~/DersProgrami/DersPView">Ders Programları</a>
+
+            </li>
+            <li>
+                <a href="~/DersEkle/DersEkle">Ders Ekle</a>
 
             </li>
 
@@ -72,7 +78,7 @@
                 <a href="~/OgrenciDersler/OgrenciDersView">Ogrenci Dersler</a>
 
             </li>
-            
+
             <li><a href="/Security/Logout">Çıkış</a></li>
 
         </ul>
@@ -82,8 +88,7 @@
       margin-right:auto;
 
       width:70%;
-
-      background-color:#b0e0e6;">
+">
         @RenderBody()
     </div>
 

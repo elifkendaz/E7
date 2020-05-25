@@ -1,0 +1,33 @@
+﻿@model E7.Models.EntityFramework.StudentCourses
+
+
+
+
+
+@{
+    ViewBag.Title = "DersEkle";
+    Layout = "~/Views/Shared/layout1.cshtml";
+}
+
+<h2>Ders Ekle</h2>
+
+<label>
+    Ders Seçiniz
+</label>
+
+
+
+
+<div>
+    @Html.DropDownListFor(m => m.Courses.CourseName, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+</div>
+<br />
+
+<div>
+    <button class="btn btn-info">Ekle</button>
+
+</div>
+@ViewBag.ekle
+@ViewBag.ktgg
+
+
